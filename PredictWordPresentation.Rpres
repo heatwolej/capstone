@@ -1,0 +1,61 @@
+Suggesting Next Word
+========================================================
+author: Jeff Heatwole
+date: October 9, 2016
+autosize: true
+font-family: 'Garamond'
+transition: rotate
+width: 1440
+height: 900
+
+- Capstone Project Final Presentation
+- Data Science Specialization through Coursera and JHU
+- In conjunction with SwiftKey
+- Assignment: Build a Word Prediction Model
+
+Scoping the Challenge
+========================================================
+Inputs:
+- Large volumes of news, blogs, twitter data
+- Objectionable word list
+
+Approach:
+- Build a model of common word groups
+- Determine relative frequency of word groups
+- Develop code to suggest next word
+
+Output:
+- A web application that predicts nth word based on n-1 input words
+
+Building the Model
+========================================================
+
+- Built master corpus by sampling 8% of text inputs. Sampling rate forced by RAM limitations.
+- Cleaned input of objectionable words, non-alphabetic characters, punctution, etc. and converted to lower case.
+- Tokenized corpus to discover frequency of 1-grams, 2-grams, 3-grams, and 4-grams
+- n-gram is a collection of n words
+- Parsed each n-gram set and sorted by frequently of nth word for each prefix of (n-1) terms
+- Developed several predictive models based on these frequencies (Stupid Backoff, Weighted by N-Gram)
+
+Testing the Model
+========================================================
+
+- Built a separate test corpus by sampling unused blogs, news, tweets
+- Selected random starting point within each entry and extracted 2-gram, 3-gram, or 4-gram
+- Ran several different models using different weights of n-grams
+- Fed (n-1)-gram into prediction model, and counted success if model predicted nth word
+Results:
+- No statistically significant difference between Stupid Backoff or N-Gram Weighted Predictions
+- Depending on test set weightings, successfully predicted between 36% and 52% of cases
+- Based on simplicity, chose Stupid Backoff method for web application
+
+Shiny (Web) Application
+========================================================
+![Suggest Word Shiny Web Application]("c:/dev/r/capstone/suggest_capture.png")
+***
+- Running on Public Shiny Server
+- Selected Shiny Dashboard Interface
+- Reactive to typing
+- User can select number of results to report
+- Check it out for yourself at:
+- Source code available here
