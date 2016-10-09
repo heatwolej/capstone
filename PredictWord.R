@@ -62,6 +62,8 @@ predictWord <- function(phrase, limit) {
   for (i in 1:limit) {
     toplist[i] <-topten[i]$gram
   }
+  phrase <- tolower(gsub("[^a-zA-Z ]","",phrase))
+  
   tokens = unlist(strsplit(phrase, '\\s+'))
   ntokens = length(tokens)
   if (ntokens > 2) {
